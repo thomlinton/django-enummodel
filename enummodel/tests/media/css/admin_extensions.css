@@ -1,0 +1,6 @@
+ul {
+    clear: left;
+}
+ul li {
+    display: inline;
+}
