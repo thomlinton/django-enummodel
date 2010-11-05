@@ -1,6 +1,6 @@
-==================
+================
 django-enummodel
-==================
+================
 
 ``django-enummodel`` is a small utility application designed to help bridge the niche use 
 case(s?) between defining enumerations for a given field (mutually exclusive options) and 
@@ -15,7 +15,7 @@ O(n) growth rate of fixtures to manage, coupled with the desire to avoid encount
 issues of internationalization and being forced to choose a particular character set 
 in which to store these values.
 
-``django-enummodel`` provides a Django_ Model object with which the developer may extend 
+``django-enummodel`` provides a `Django`_ Model object with which the developer may extend 
 to provide the functionality sketched above::
 
   LANGUAGE_CHOICES = (
@@ -34,6 +34,8 @@ Please note that that population of any model derived from ``EnumModel`` takes p
 ``syncdb``; therefore, changes to the choices basis will need to be rectified by running::
 
   django-admin.py syncdb
+
+.. _Django: http://djangoproject.org
 
 
 Release notes

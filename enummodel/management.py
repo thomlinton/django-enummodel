@@ -14,7 +14,7 @@ def bootstrap_choice_model( sender, **kwargs ):
     app_models = get_models( app )
     for model_cls in app_models:
         if not issubclass(model_cls, EnumModel) or model_cls._meta.abstract:
-            return
+            continue
 
         value_field = model_cls._enum_meta.value_field
         choices = model_cls._enum_meta.choices
