@@ -41,6 +41,11 @@ Please note that that population of any model derived from ``EnumModel`` takes p
 Release notes
 -------------
 
+0.1.1
+=====
+
+* Fixed issue with incorrectly registering and populating ``EnumModel`` derivatives.
+
 0.1.0
 =====
 
