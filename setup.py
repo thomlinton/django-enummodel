@@ -19,7 +19,7 @@ setup(
     url = "http://github.com/yorkedork/django-enummodel/tree/master",
     packages=find_packages(),
     install_requires = [
-        'django',
+        'Django',
         ],
     long_description=read('README.rst'),
     classifiers=[
