@@ -41,6 +41,11 @@ Please note that that population of any model derived from ``EnumModel`` takes p
 Release notes
 -------------
 
+0.1.2
+=====
+
+* Discovered incorrect package spec in setup.py
+
 0.1.1
 =====
 
