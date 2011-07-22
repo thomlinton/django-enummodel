@@ -41,17 +41,7 @@ Please note that that population of any model derived from ``EnumModel`` takes p
 Release notes
 -------------
 
-0.1.2
+0.1.4
 =====
 
-* Discovered incorrect package spec in setup.py
-
-0.1.1
-=====
-
-* Fixed issue with incorrectly registering and populating ``EnumModel`` derivatives.
-
-0.1.0
-=====
-
-* Initial release
+* Include support for South-managed applications.

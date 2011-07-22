@@ -1,5 +1,5 @@
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
-from django.db.models.loading import get_models
+from django.db.models.loading import get_models, get_app
 from django.db.models import signals
 
 from enummodel.models import EnumModel
@@ -11,7 +11,11 @@ def bootstrap_choice_model( sender, **kwargs ):
     verbosity = kwargs.pop('verbosity',0)
     interactive = kwargs.pop('interactive',False)
 
-    app_models = get_models( app )
+    # XXX: South compatibility
+    if type(app) == str:
+        app = get_app(app)
+
+    app_models = get_models(app)
     for model_cls in app_models:
         if not issubclass(model_cls, EnumModel) or model_cls._meta.abstract:
             continue
@@ -36,3 +40,10 @@ def bootstrap_choice_model( sender, **kwargs ):
                     .update(**update_kwargs)
 
 signals.post_syncdb.connect(bootstrap_choice_model)
+
+# XXX: South compatibility
+try:
+    from south import signals
+    signals.post_migrate.connect(bootstrap_choice_model)
+except ImportError:
+    pass
