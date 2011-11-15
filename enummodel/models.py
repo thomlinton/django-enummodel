@@ -48,6 +48,9 @@ class EnumModel(models.Model):
         abstract = True
 
     def __unicode__(self):
-        if self._enum_meta.value_field:
-            return u'%s' % (getattr(self,self._enum_meta.value_field))
-        return u'%s' % (dict(self._enum_meta.choices)[self.key])
+        try:
+            if self._enum_meta.value_field:
+                return u'%s' % (getattr(self,self._enum_meta.value_field))
+            return u'%s' % (dict(self._enum_meta.choices)[self.key])
+        except (AttributeError, KeyError):
+            return u'%s' % ("<Value could not be mapped>")

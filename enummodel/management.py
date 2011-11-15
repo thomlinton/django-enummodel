@@ -27,6 +27,22 @@ def bootstrap_choice_model( sender, **kwargs ):
                 u"Please specify the Meta class option 'choices' on %s" % \
                     (model_cls._meta.verbose_name))
 
+        # XXX: Prune enumeration values that no longer exist
+        choice_mapping = dict(choices)
+        for instance in model_cls.objects.all():
+            if instance.key not in choice_mapping.keys():
+                response = raw_input("""
+The model '%s' is managed by 'django-enummodel' and a key ('%s') is present in the datastore
+but not the enumeration.
+
+Pruning unused keys is recommended; however, depending on the data model, this action may
+cascade on distinct objects, having frustrating and/or undesireable consequences.
+
+Prune this key? [y/N] """ % (model_cls._meta.verbose_name, instance.key))
+                if response not in ['y','Y']:
+                    continue
+                instance.delete()
+
         for choice in choices:
             try:
                 model_cls.objects.get(key=int(choice[0]))
