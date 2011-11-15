@@ -27,6 +27,12 @@ def bootstrap_choice_model( sender, **kwargs ):
                 u"Please specify the Meta class option 'choices' on %s" % \
                     (model_cls._meta.verbose_name))
 
+        # XXX: Clear existing enumeration values 
+        model_cls.objects.all().delete()
+        for instance in model_cls.objects.all():
+            if instance.key not in choices:
+                instance.delete()
+
         for choice in choices:
             try:
                 model_cls.objects.get(key=int(choice[0]))
