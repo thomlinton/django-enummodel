@@ -10,17 +10,18 @@ def read(fname):
 
 setup(
     name = "django-enummodel",
-    version = "0.1.5",
+    version = "0.1.6",
     author = "Thom Linton",
     author_email = "thom.linton@gmail.com",
     description = "A Django application to bridge the gap between using enumerations and having fully-specified, normalized data models.",
     license = "BSD",
     keywords = "",
     url = "http://github.com/yorkedork/django-enummodel/tree/master",
+    install_requires=['six'],
     packages=find_packages(),
     long_description=read('README.rst'),
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 3 - Beta",
         "Environment :: Web Environment",
         "Framework :: Django",
         "Intended Audience :: Developers",
