@@ -1,3 +1,6 @@
+from __future__ import unicode_literals
+from __future__ import absolute_import
+
 import logging
 import six
 
@@ -32,7 +35,7 @@ class EnumModelBase(ModelBase):
         return new_class
 
 @python_2_unicode_compatible
-class EnumModel(models.Model):
+class EnumModel(six.with_metaclass(EnumModelBase, models.Model)):
     """
     An abstract base class designed to provided an the flexibility of
     a ``ChoiceField`` yet within a normalized (record-type) context.
@@ -47,8 +50,6 @@ class EnumModel(models.Model):
     ``value_field``.
 
     """
-    __metaclass__ = EnumModelBase
-
     key = models.PositiveIntegerField(_(u'key'), primary_key=True, db_index=True)
 
     class Meta:
@@ -62,17 +63,3 @@ class EnumModel(models.Model):
             return u'%s' % (dict(self._enum_meta.choices)[self.key])
         except (AttributeError, KeyError):
             return u'%s' % ("<Value could not be mapped>")
-
-# XXX: As of six==1.9.0, it appears that using the 'six.add_metaclass(...)'
-#      decorator does not arrange for adequate patching and breaks functioning
-#      of django-enummodel.
-#
-# As a result, we construct a divergent code path to explicitly handle py3k targets.
-#
-# See also:
-#     https://bitbucket.org/gutworth/six/issue/118/sixadd_metaclass-and-django-models
-#
-if six.PY3:
-    class EnumModel(six.with_metaclass(EnumModelBase, EnumModel)):
-        class Meta(EnumModel.Meta):
-            abstract = True

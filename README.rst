@@ -30,9 +30,13 @@ to provide the functionality sketched above::
       class EnumMeta:
           choices = LANGUAGE_CHOICES
 
-Please note that that population of any model derived from ``EnumModel`` takes place on
-``syncdb``; therefore, changes to the choices basis will need to be rectified by running::
+Please note that that population of any model derived from ``EnumModel`` takes place after
+schema migration; therefore, changes to the choices basis will need to be rectified by running::
 
-  django-admin.py syncdb
+  django-admin.py migrate
+
+or::
+
+  django-admin.py migrate app_name
 
 .. _Django: http://djangoproject.org
