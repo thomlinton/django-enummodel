@@ -21,7 +21,7 @@ setup(
     packages=find_packages(),
     long_description=read('README.rst'),
     classifiers=[
-        "Development Status :: 3 - Beta",
+        "Development Status :: 4 - Beta",
         "Environment :: Web Environment",
         "Framework :: Django",
         "Intended Audience :: Developers",
