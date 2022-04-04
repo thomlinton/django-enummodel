@@ -2,6 +2,11 @@
 Release notes
 =============
 
+1.0.0
+=====
+
+* Uses Django 3.2 LTS
+
 0.2.0
 =====
 
