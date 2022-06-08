@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+django = "~=3.2"
 
 [dev-packages]
 textile = "~=4.0.0"
-Sphinx = "~=4.5.0"
+Sphinx = "~=5.0.0"
 sphinx_rtd_theme = "~=1.0.0"
