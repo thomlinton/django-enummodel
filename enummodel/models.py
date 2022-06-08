@@ -1,10 +1,5 @@
-from __future__ import unicode_literals
-from __future__ import absolute_import
-
 import logging
-import six
 
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.base import ModelBase
 from django.db import models
@@ -18,7 +13,7 @@ class EnumModelOptions(object):
 
     def __init__(self, opts):
         if opts:       
-            for key, value in six.iteritems(opts.__dict__):
+            for key, value in opts.__dict__.items():
                 if not key.startswith('__'):
                     setattr(self, key, value)
 
@@ -34,8 +29,8 @@ class EnumModelBase(ModelBase):
         new_class.add_to_class('_enum_meta', EnumModelOptions(enum_meta))
         return new_class
 
-@python_2_unicode_compatible
-class EnumModel(six.with_metaclass(EnumModelBase, models.Model)):
+
+class EnumModel(models.Model, metaclass=EnumModelBase):
     """
     An abstract base class designed to provided an the flexibility of
     a ``ChoiceField`` yet within a normalized (record-type) context.
