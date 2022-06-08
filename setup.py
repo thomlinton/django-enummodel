@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = "django-enummodel",
-    version = "1.0.0.dev0",
+    version = "1.0.0",
     author = "Thom Linton",
     author_email = "tlinton@pdx.edu",
     description = "A Django application to bridge the gap between using enumerations and having fully-specified, normalized data models.",
